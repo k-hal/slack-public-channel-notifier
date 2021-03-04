@@ -57,6 +57,26 @@ app.event("channel_shared", ({ event, context }) => {
   }
 });
 
+app.event("emoji_changed", ({ event, context }) => {
+  try {
+    if (!_.includes(events, event.type)) {
+      if(event.subtype == "add"){
+        const result = app.client.chat.postMessage({
+          token: context.botToken,
+          channel: process.env.SLACK_CHANNEL_ID,
+          text: `A new emoji was added: :${event.name}:`
+        });
+        console.log(result);
+        events.push(event.name);
+      }
+    } else {
+      console.log("Event already processed.");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 exports.run = expressReceiver.app;
 
 // (async () => {
