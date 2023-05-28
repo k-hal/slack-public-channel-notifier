@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "dependencies": {
-    "@slack/bolt": "3.12.2",
+    "@slack/bolt": "3.13.1",
     "lodash": "4.17.21"
   }
 }
